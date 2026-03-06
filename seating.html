@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seating & Attendance Planner - Srinis AI</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         :root {
             --primary: #2563eb; --primary-dark: #1d4ed8;
@@ -135,16 +134,6 @@
             }
             .print-page:last-child { page-break-after: auto; }
         }
-
-        /* --- PDF EXPORT SPECIFIC STYLES --- */
-        body.pdf-export-mode { background: white !important; padding: 0 !important; margin: 0 !important; }
-        body.pdf-export-mode .controls, body.pdf-export-mode .action-bar, body.pdf-export-mode .ui-footer { display: none !important; }
-        body.pdf-export-mode #print-container { gap: 0 !important; margin: 0 !important; display: block !important; }
-        body.pdf-export-mode .print-page { 
-            box-shadow: none !important; border-radius: 0 !important; 
-            margin: 0 !important; width: 210mm !important; height: 296mm !important; 
-            page-break-after: always; page-break-inside: avoid;
-        }
     </style>
 </head>
 <body>
@@ -206,7 +195,7 @@
         <a href="admitcard.html" class="btn-home">🎫 Admit Card</a>
         <a href="setup.html" class="btn-edit">🏫 School Profile</a>
         <button class="btn-gen" onclick="generateAllRooms()">⚙️ Generate Plan</button>
-        <button class="btn-prt" onclick="downloadOrPrintPDF()">🖨️ Print Layout</button>
+        <button class="btn-prt" onclick="window.print()">🖨️ Print Layout</button>
         <button class="btn-clr" onclick="clearRooms()" title="Clear Rooms">🗑️ Clear</button>
     </div>
 
@@ -492,7 +481,7 @@
                     if(!assigned) break;
                 }
 
-                // Section-wise Room Summaries & Notice Board Data
+                // FIX: Section-wise Room Summaries & Notice Board Data
                 let roomClassGroups = {};
                 flatRoomRollsForAttendance.forEach(st => {
                     if(!roomClassGroups[st.fullClassName]) {
@@ -793,50 +782,6 @@
             container.innerHTML = finalAdminPagesHTML + groupedPagesHTML;
             
             setTimeout(() => { document.getElementById("print-container").scrollIntoView({ behavior: 'smooth' }); }, 100);
-        }
-
-        // --- NEW: PDF DOWNLOAD OR PRINT FUNCTION ---
-        function downloadOrPrintPDF() {
-            let container = document.getElementById('print-container');
-            if(container.innerHTML.trim() === '') {
-                alert("⚠️ कृपया पहले 'Generate Plan' पर क्लिक करके प्लान बनाएं।");
-                return;
-            }
-
-            // Mobile Device Detection
-            let isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-            if(isMobile) {
-                // Mobile: Download PDF directly
-                let btn = document.querySelector('.btn-prt');
-                let originalText = btn.innerHTML;
-                btn.innerHTML = "⏳ Downloading PDF...";
-                btn.disabled = true;
-
-                document.body.classList.add('pdf-export-mode');
-
-                var opt = {
-                    margin:       0,
-                    filename:     'Seating_Arrangement_' + new Date().getTime() + '.pdf',
-                    image:        { type: 'jpeg', quality: 0.98 },
-                    html2canvas:  { scale: 2, useCORS: true, logging: false },
-                    jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                };
-
-                html2pdf().set(opt).from(container).save().then(() => {
-                    document.body.classList.remove('pdf-export-mode');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                }).catch(err => {
-                    document.body.classList.remove('pdf-export-mode');
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
-                    alert("PDF डाउनलोड में त्रुटि हुई।");
-                });
-            } else {
-                // Desktop: Open Print Dialog (Normal functionality)
-                window.print();
-            }
         }
     </script>
 </body>
