@@ -248,6 +248,7 @@
             }, 1000);
         }
     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body onload="initForm(); applyRandomTheme()">
 
@@ -280,7 +281,7 @@
     </div>
     
     <button onclick="applyRandomTheme()" style="padding: 8px; background: #333; border: 1px solid #555; color: #fff; border-radius: 50%; cursor: pointer;">🎨</button>
-    <button onclick="window.print()" class="btn-print">🖨️ Print</button>
+    <button onclick="smartPrint()" class="btn-print">🖨️ Print</button>
     <button onclick="sendEmail()" class="btn-email">📧 Email PDF</button>
 
 <br> <marquee direction="left" style="color:white; font-size:15px; font-weight:bold; background:black;" >हिंदी और अंग्रेजी में टाईपिंग के लिए Google Input Tools  के साथ कीबोर्ड पर Alt+Shift बटन एक साथ दबाएं या आप WindowsKey+Spacebar का भी इस्तेमाल कर सकते हैं।</marquee>
@@ -445,6 +446,42 @@
 
 <script>
     function initForm() { updateCalendar(); }
+
+    // --- NEW SMART PRINT FUNCTION ---
+    function smartPrint() {
+        // चेक करें कि यूज़र मोबाइल पर है या कंप्यूटर पर
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        if (isMobile) {
+            // अगर मोबाइल है तो सीधा PDF डाउनलोड करें
+            alert("PDF जनरेट हो रहा है, कृपया कुछ सेकंड प्रतीक्षा करें...");
+            
+            // प्रिंट करते समय ऊपर के बटन (Control Panel) को छिपाने के लिए
+            const controlPanel = document.querySelector('.control-panel');
+            controlPanel.style.display = 'none'; 
+
+            // PDF की सेटिंग
+            const element = document.body;
+            const opt = {
+                margin:       0,
+                filename:     'SriNis_AI_Attendance_Form.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+            };
+
+            // PDF डाउनलोड करें
+            html2pdf().set(opt).from(element).save().then(() => {
+                // डाउनलोड होने के बाद बटन वापस दिखा दें
+                controlPanel.style.display = 'flex'; 
+            });
+
+        } else {
+            // अगर कंप्यूटर है तो नॉर्मल प्रिंट विंडो खोलें
+            window.print();
+        }
+    }
 </script>
 </body>
+
 </html>
