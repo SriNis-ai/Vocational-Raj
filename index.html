@@ -1,19 +1,28 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>SRINIS AI - Vocational Portal</title>
-<link rel="icon" type="image/png" href="SriNis_Ai_logo.png">
+    <title>SRINIS AI - Modern Premium Vocational Portal</title>
+	<link rel="icon" type="image/png" href="SriNis_Ai_logo.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@500;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-color: #ff6b35;
+            --primary-gradient: linear-gradient(135deg, #f59e0b 0%, #ef4444 30%, #a855f7 70%, #3b82f6 100%);
+            --primary-color: #ff6b35; 
             --secondary-color: #ff9f43;
-            --bg-color: #1a1a1a;
-            --card-bg: #252525;
+            --primary-r: 255;
+            --primary-g: 107;
+            --primary-b: 53;
+            
+            --bg-color: #07080d;
+            --card-bg: rgba(25, 25, 30, 0.6);
             --text-color: #ffffff;
+            --glow-pink: rgba(255, 0, 166, 0.4);
+            --glow-blue: rgba(0, 153, 255, 0.3);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; transition: all 0.5s ease; }
@@ -30,236 +39,670 @@
             padding: 10px;
         }
 
+        /* --- BACKGROUND PARTICLES --- */
+        #particle-canvas {
+            position: fixed; 
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -1; 
+            opacity: 0.4;
+            pointer-events: none; 
+        }
+
+        /* --- DYNAMIC LIGHTING EFFECTS --- */
+        .light-effects {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            z-index: -3;
+            pointer-events: none;
+        }
+
+        .light-source {
+            position: absolute;
+            width: 1px; height: 1px;
+            border-radius: 50%;
+            animation: pulseLight 4s infinite alternate;
+        }
+
+        .light-pink {
+            top: 20%; right: 20%;
+            background: rgba(255, 0, 166, 0.6);
+            box-shadow: 0 0 200px 100px rgba(255, 0, 166, 0.5);
+        }
+
+        .light-blue {
+            bottom: 20%; left: 20%;
+            background: rgba(0, 153, 255, 0.5);
+            box-shadow: 0 0 250px 120px rgba(0, 153, 255, 0.4);
+        }
+
+        @keyframes pulseLight {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        /* --- ABSTRACT 3D SHAPES --- */
+        .abstract-scene {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100vw; height: 100vh;
+            z-index: -2;
+            pointer-events: none;
+            perspective: 2000px;
+        }
+
+        .float-shape {
+            position: absolute;
+            opacity: 0.5;
+            animation: shapeFloat infinite ease-in-out;
+            transform-style: preserve-3d;
+        }
+
+        .shape-1 {
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            border: 30px solid transparent;
+            border-top: 30px solid #1a1f35;
+            border-right: 30px solid #1a1f35;
+            top: 10%; right: 10%;
+            transform: rotateX(75deg) rotateY(10deg);
+            animation-duration: 12s;
+            box-shadow: 10px 10px 50px var(--glow-pink);
+        }
+
+        .shape-2 {
+            width: 400px; height: 400px;
+            border-radius: 50%;
+            border: 40px solid transparent;
+            border-bottom: 40px solid #1f2233;
+            bottom: -5%; left: -5%;
+            transform: rotateX(-60deg) rotateY(30deg);
+            animation-duration: 15s;
+            box-shadow: -10px -10px 60px var(--glow-blue);
+        }
+
+        @keyframes shapeFloat {
+            0%, 100% { transform: translateY(0) rotateX(0deg); }
+            50% { transform: translateY(-30px) rotateX(5deg); }
+        }
+
         /* --- HERO SECTION --- */
         header {
-            text-align: center;
-            margin-top: 40px;
-            margin-bottom: 30px;
-            animation: fadeInDown 1s ease-out;
             width: 100%;
-            padding: 0 10px;
-        }
-
-        /* LOGO LAYOUT KE LIYE NAYA CSS */
-        .header-content {
+            max-width: 1200px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 15px; /* Logo aur Text ke beech ka gap */
+            justify-content: space-between;
+            margin-top: 50px;
+            margin-bottom: 80px; 
+            animation: fadeInDown 1s ease-out;
+            padding: 0 20px;
+            position: relative; 
+            z-index: 10;
         }
 
-        .custom-logo {
-            height: 80px; /* Text ke size se match karne ke liye */
-            width: auto;
+        .hero-text {
+            width: 50%;
+            text-align: left;
+            position: relative;
+            z-index: 2;
         }
 
         .srinis-logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 80px; 
             font-weight: 900;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, #fff 100%);
+            text-transform: none; 
+            
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0px 10px 20px rgba(0,0,0,0.5);
+            background-clip: text;
+            filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.5));
+            
             letter-spacing: -2px;
             line-height: 1.1;
             display: inline-block;
         }
 
         .tagline {
-            font-size: 18px;
-            color: #ccc;
-            margin-top: 10px;
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
+            font-size: 18px; color: #ccc;
+            margin-top: 10px; font-weight: 700;
+            letter-spacing: 1px; text-transform: uppercase;
         }
 
-        /* --- DASHBOARD GRID --- */
-        .container {
+        .website-description {
+            font-size: 15px;
+            color: #b0b0c0;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            line-height: 1.7;
+            max-width: 550px;
+            font-weight: 500;
+        }
+
+        .install-btn {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            z-index: 2;
+            opacity: 0;
+            animation: fadeInUp 1s 1.4s ease forwards;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+        }
+
+        /* --- 3D DYNAMIC WORLD MAP GLOBE --- */
+        .holographic-wireframe {
+            width: 40%;
             display: flex;
             justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap; 
-            max-width: 1200px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .globe-sphere {
+            position: relative; 
+            width: 450px;
+            height: 450px;
+            border-radius: 50%;
+            
+            /* Glass sphere inner and outer glow matching the theme */
+            box-shadow: 
+                inset -30px -30px 60px rgba(0,0,0,0.9), 
+                inset 0 0 80px rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.8), 
+                0 0 50px rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.4);
+            
+            overflow: hidden; 
+            opacity: 0;
+            animation: globeRevealSide 1.5s 0.5s ease-out forwards;
+        }
+
+        .globe-map-layer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            
+            /* MAGIC: Background color is completely dynamic now! */
+            background-color: var(--primary-color);
+            
+            /* The map is used as a mask, so whatever background color we set, it takes that shape */
+            -webkit-mask-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg');
+            mask-image: url('https://upload.wikimedia.org/wikipedia/commons/e/ec/World_map_blank_without_borders.svg');
+            -webkit-mask-size: 250% 100%;
+            mask-size: 250% 100%;
+            -webkit-mask-repeat: repeat-x;
+            mask-repeat: repeat-x;
+            
+            animation: spinWorldMap 30s linear infinite;
+        }
+
+        .globe-glare {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            box-shadow: 
+                inset -20px -20px 60px rgba(0,0,0,0.9), 
+                inset 10px 10px 30px rgba(255,255,255,0.2);
+            pointer-events: none;
+        }
+
+        /* --- DASHBOARD MODULES --- */
+        #portal-modules {
             width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             padding: 20px;
+            z-index: 10;
+        }
+
+        .card-grid {
+            display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; width: 100%;
         }
 
         .card {
-            background: var(--card-bg);
-            width: 100%; 
-            max-width: 350px; 
-            border-radius: 20px;
-            padding: 30px;
+            background: var(--card-bg); 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            width: 100%; max-width: 270px; 
+            border-radius: 20px; padding: 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            text-decoration: none;
-            color: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            position: relative; overflow: hidden;
+            cursor: pointer; text-decoration: none; color: white;
             margin-bottom: 10px; 
+            transition: all 0.3s ease;
         }
 
         .card:hover {
             transform: translateY(-10px);
             border-color: var(--primary-color);
-            box-shadow: 0 20px 50px var(--secondary-color); 
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px var(--secondary-color); 
         }
 
         .card::before {
-            content: '';
-            position: absolute;
+            content: ''; position: absolute;
             top: 0; left: 0; width: 100%; height: 5px;
-            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            background: var(--primary-gradient);
         }
 
         .card-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+            font-size: 35px; margin-bottom: 20px;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .card h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .card p {
-            font-size: 14px;
-            color: #aaa;
-            margin-bottom: 25px;
-            line-height: 1.5;
-        }
+        .card h2 { font-size: 20px; margin-bottom: 10px; font-family: 'Montserrat', sans-serif; font-weight: 800;}
+        .card p { font-size: 13px; color: #bbb; margin-bottom: 25px; line-height: 1.5; }
 
         .btn-open {
-            display: inline-block;
-            padding: 12px 30px;
+            display: inline-block; padding: 12px 30px;
             border-radius: 50px;
             background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-            color: white;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 14px;
+            color: white; font-weight: 700;
+            text-transform: uppercase; font-size: 12px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
-        /* --- FOOTER --- */
-        footer {
-            margin-top: auto;
-            padding: 20px;
-            color: #555;
-            font-size: 12px;
-            text-align: center;
-            width: 100%;
+        /* --- MODERN ENGLISH FOOTER --- */
+        footer { 
+            margin-top: 100px; 
+            margin-bottom: 20px; 
+            width: 95%; 
+            max-width: 1400px;
+            padding: 50px; 
+            background: rgba(15, 15, 20, 0.7); 
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            z-index: 10; 
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            align-self: center; 
         }
 
-        /* --- MOBILE RESPONSIVENESS --- */
-        @media (max-width: 768px) {
-            header { margin-top: 30px; margin-bottom: 20px; }
-            
-            .custom-logo { height: 45px; } /* Mobile ke liye chota logo */
-            
-            .srinis-logo { 
-                font-size: 45px; 
-                letter-spacing: -1px;
-            }
-            
-            .tagline { 
-                font-size: 12px; 
-                margin-top: 5px;
-                letter-spacing: 1px;
-            }
+        .footer-main {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr; 
+            gap: 40px;
+        }
 
+        .footer-brand {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .footer-logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 28px;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .footer-brief {
+            color: #b0b0c0;
+            font-size: 14px;
+            line-height: 1.7;
+            max-width: 400px;
+        }
+
+        .footer-links-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            text-align: left;
+        }
+
+        .footer-links-group h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links-group a {
+            color: #aaa;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links-group a:hover {
+            color: #fff;
+            transform: translateX(5px); 
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #777;
+            font-size: 13px;
+        }
+
+        .system-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.1);
+            border: 1px solid rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.3);
+            border-radius: 20px;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 12px;
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            animation: statusPulse 1.5s infinite; 
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-socials a {
+            width: 35px; height: 35px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            color: #888;
+            font-size: 16px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-socials a:hover {
+            background: var(--primary-gradient);
+            color: #fff;
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.5);
+        }
+
+        @media (max-width: 900px) {
+            header { flex-direction: column-reverse; margin-top: 30px; margin-bottom: 50px; padding: 10px;} 
+            .hero-text { width: 100%; text-align: center;}
+            .website-description { margin-left: auto; margin-right: auto;}
+            
+            .globe-sphere { width: 300px; height: 300px; position: static; margin-bottom: 30px;} 
+            
+            .srinis-logo { font-size: 45px; letter-spacing: -1px; }
+            .tagline { font-size: 12px; margin-top: 5px; letter-spacing: 1px; }
             .container { padding: 10px; gap: 20px; }
-            .card { padding: 25px; }
-            .card h2 { font-size: 20px; }
-            .card-icon { font-size: 40px; margin-bottom: 15px; }
+            .card { padding: 25px; max-width: 250px;}
+            .card h2 { font-size: 18px; }
+            .card-icon { font-size: 30px; margin-bottom: 15px; }
+            
+            .footer-main { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .footer-brand, .footer-links-group { text-align: center; align-items: center; }
+            .footer-brief { margin-left: auto; margin-right: auto; }
+            .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
         }
 
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes globeRevealSide {
+            from { opacity: 0; transform: scale(0.6); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        /* Update: Spinning mask position instead of background to keep colors intact */
+        @keyframes spinWorldMap {
+            0% { -webkit-mask-position: 0 0; mask-position: 0 0; }
+            100% { -webkit-mask-position: -250% 0; mask-position: -250% 0; }
+        }
+
+        @keyframes statusPulse {
+            0% { box-shadow: 0 0 0 0 rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0); }
+            100% { box-shadow: 0 0 0 0 rgba(var(--primary-r), var(--primary-g), var(--primary-b), 0); }
+        }
     </style>
 
+</head>
+<body onload="applyRandomTheme()">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="light-effects">
+        <div class="light-source light-pink"></div>
+        <div class="light-source light-blue"></div>
+    </div>
+
+    <div class="abstract-scene">
+        <div class="float-shape shape-1"></div>
+        <div class="float-shape shape-2"></div>
+    </div>
+
+    <header>
+        <div class="hero-text">
+            <div class="srinis-logo">SriNis AI</div>
+            <div class="tagline">Vocational Education Management System</div> 
+            
+            <p class="website-description">
+                Empowering vocational trainners and system administrators. Our premier digital platform streamlines Vocational Education Management. Manage attendance of vocational trainners, student assessments, examination question paper downlaod for Class 9 & 11, and exam seating arrangements—all through one unified, premium management dashboard.
+            </p>
+          </div>
+
+        <div class="holographic-wireframe">
+            <div class="globe-sphere">
+                <div class="globe-map-layer"></div>
+                <div class="globe-glare"></div>
+            </div>
+        </div>
+        
+    </header>
+
+    <section id="portal-modules">
+        <div class="card-grid">
+            <a href="attendance.html" class="card">
+                <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <h2>Attendance Form</h2>
+                <p>Generate monthly vocational attendance reports (Part A & Part B) with auto-calculation.</p>
+                <div class="btn-open">Open Form</div>
+            </a>
+
+            <a href="annexure_master.html" class="card">
+                <div class="card-icon"><i class="fa-solid fa-chart-column"></i></div>
+                <h2>Assessment System</h2>
+                <p>Manage student data and generate Annexure 1, 2, and 3 for practical assessments.</p>
+                <div class="btn-open">Open Dashboard</div>
+            </a>
+            
+            <a href="annual_exam.html" class="card">
+                <div class="card-icon"><i class="fa-solid fa-file-pen"></i></div>
+                <h2>Annual Examination 2026</h2>
+                <p>Generate, manage, and download annual examination question papers for Class 9 & 11.</p>
+                <div class="btn-open">Exams Papers</div>
+            </a>
+
+            <a href="exam.html" class="card">
+                <div class="card-icon"><i class="fa-solid fa-users-viewfinder"></i></div>
+                <h2>Exam Seating Plan</h2>
+                <p>Smartly generate automated room-wise seating arrangements, duty charts, and admit cards.</p>
+                <div class="btn-open">Open Planner</div>
+            </a>
+			
+			<a href="#" class="card">
+                <div class="card-icon"><i class="fa-solid fa-hourglass-half fa-spin-pulse"></i></div>
+                <h2>New Coming Soon!!!</h2>
+                <p>Coming Soon A Smartly Generate Automated System for Vocational Trainners.</p>
+                <div class="btn-open">Coming Soon...</div>
+            </a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-brand">
+                <div class="footer-logo-text">SRINIS AI</div>
+                <p class="footer-brief">
+                    A premium and integrated digital platform, streamlining vocational trainner management. From reports to exams, everything in one secure place.
+                </p>
+                <div class="footer-socials">
+                    <a href="#" title="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Portal Modules</h4>
+                <a href="attendance.html"><i class="fa-solid fa-angle-right"></i> Attendance Form</a>
+                <a href="annexure_master.html"><i class="fa-solid fa-angle-right"></i> Assessment System</a>
+                <a href="annual_exam.html"><i class="fa-solid fa-angle-right"></i> Annual Exam 2026</a>
+                <a href="exam.html"><i class="fa-solid fa-angle-right"></i> Exam Seating Plan</a>
+            </div>
+
+            <div class="footer-links-group">
+                <h4>Useful Resources</h4>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> User Guide</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> Technical Support</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> Privacy Policy</a>
+                <a href="#"><i class="fa-solid fa-angle-right"></i> System Updates</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright-text">
+                &copy; 2026 <strong>SRINIS AI</strong>. Developed by SRINIS. All Rights Reserved.
+            </div>
+            <div class="system-status">
+                <div class="status-dot"></div>
+                System v2.0 : Online
+            </div>
+        </div>
+    </footer>
+
     <script>
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        let particleRGB = { r: 0, g: 242, b: 255 }; 
+        
+        function hexToRgb(hex) {
+            let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? { r: parseInt(result[1], 16), g: parseInt(result[2], 16), b: parseInt(result[3], 16) } : null;
+        }
+
         function applyRandomTheme() {
             const themes = [
-                { p: '#ff6b35', s: '#ff9f43' },
-                { p: '#00d2d3', s: '#54a0ff' },
-                { p: '#ff4757', s: '#ff6b81' },
-                { p: '#2ecc71', s: '#27ae60' },
-                { p: '#9b59b6', s: '#8e44ad' },
-                { p: '#f1c40f', s: '#f39c12' },
-                { p: '#e056fd', s: '#be2edd' } 
+                { p: '#ff6b35', s: '#ff9f43' }, { p: '#00d2d3', s: '#54a0ff' }, 
+                { p: '#ff4757', s: '#ff6b81' }, { p: '#2ecc71', s: '#27ae60' }, 
+                { p: '#9b59b6', s: '#8e44ad' }, { p: '#f1c40f', s: '#f39c12' }, 
+                { p: '#e056fd', s: '#be2edd' }
             ];
             const randomTheme = themes[Math.floor(Math.random() * themes.length)];
             const root = document.documentElement.style;
+            
             root.setProperty('--primary-color', randomTheme.p);
             root.setProperty('--secondary-color', randomTheme.s);
+            
+            let convertedRGB = hexToRgb(randomTheme.p);
+            if(convertedRGB) { 
+                particleRGB = convertedRGB; 
+                root.setProperty('--primary-r', convertedRGB.r);
+                root.setProperty('--primary-g', convertedRGB.g);
+                root.setProperty('--primary-b', convertedRGB.b);
+            }
+            initCanvas(); 
         }
-        window.onload = applyRandomTheme;
+
+        function initCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for(let i=0; i<80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 0.4,
+                    vy: (Math.random() - 0.5) * 0.4,
+                    size: Math.random() * 2 + 1
+                });
+            }
+        }
+
+        function drawParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = `rgb(${particleRGB.r}, ${particleRGB.g}, ${particleRGB.b})`; 
+            
+            particles.forEach((p, index) => {
+                p.x += p.vx;
+                p.y += p.vy;
+                if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
+                if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+                
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+                ctx.fill();
+
+                for(let j = index + 1; j < particles.length; j++) {
+                    const p2 = particles[j];
+                    const dist = Math.hypot(p.x - p2.x, p.y - p2.y);
+                    if(dist < 100) {
+                        ctx.strokeStyle = `rgba(${particleRGB.r}, ${particleRGB.g}, ${particleRGB.b}, ${1 - dist/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(p.x, p.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.stroke();
+                    }
+                }
+            });
+            requestAnimationFrame(drawParticles);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas(); 
+        drawParticles();
     </script>
-</head>
-<body>
-
-    <header>
-        <div class="header-content">
-            <img src="SriNis_Ai_logo.png" alt="SriNis AI Logo" class="custom-logo">
-            <div class="srinis-logo">SriNis AI</div>
-        </div>
-        <div class="tagline">Vocational Education Management System</div>     
-    </header>
-
-    <div class="container">
-        <a href="attendance.html" class="card">
-            <div class="card-icon">📅</div>
-            <h2>Attendance Form</h2>
-            <p>Generate monthly vocational attendance reports (Part A & Part B) with auto-calculation.</p>
-            <div class="btn-open">Open Form</div>
-        </a>
-
-        <a href="annexure_master.html" class="card">
-            <div class="card-icon">📊</div>
-            <h2>Assessment System</h2>
-            <p>Manage student data and generate Annexure 1, 2, and 3 for practical assessments.</p>
-            <div class="btn-open">Open Dashboard</div>
-        </a>
-        
-        <a href="annual_exam.html" class="card">
-            <div class="card-icon">📝</div>
-            <h2>Annual Examination 2026</h2>
-            <p>Generate, manage, and download annual examination question papers for Class 9 & 11.</p>
-            <div class="btn-open">Exams Papers & AnsKey</div>
-        </a>
-
-        <a href="exam.html" class="card">
-            <div class="card-icon">🪑</div>
-            <h2>Exam Seating Plan</h2>
-            <p>Smartly generate automated room-wise seating arrangements, duty charts, and admit cards.</p>
-            <div class="btn-open">Open Planner</div>
-        </a>
-    </div>
-    
-    <div class="tagline" style="font-size: 14px; margin-top: 20px; opacity: 0.7;">
-        Reports, Annexures, Data & Exam Management
-    </div>
-
-    <footer>
-        &copy; 2026 SRINIS AI. Developed by SRINIS. All Rights Reserved.<br>
-        Optimized for Mobile & Desktop
-    </footer>
-
 </body>
 </html>
-
-
-
-
