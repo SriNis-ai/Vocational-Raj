@@ -49,13 +49,79 @@
             opacity: 0.07; pointer-events: none; z-index: 0; display: none;
         }
         .show-watermark .page::before { display: block; }
+        .validation-error { border-color: #d00 !important; background: #fff0f0 !important; }
+        @media print {
+            .page::before { display: block !important; }
+            .principal-print-box { background: transparent !important; }
+        }
+
+
+        .part-a-page1-signature {
+            position: absolute; bottom: 8mm; right: 10mm; width: 72mm; text-align: center;
+            font-size: 12px;
+        }
+        .part-a-page1-signature p { margin: 0; }
+        @media print {
+            .part-a-page-1 { padding: 7mm !important; }
+            .part-a-page-1 h3 { font-size: 14px !important; margin-bottom: 8px !important; }
+            .part-a-page-1 .header-table td { padding: 1px 2px !important; }
+            .part-a-page-1 .header-table input { height: 20px !important; font-size: 10px !important; }
+            .part-a-page-1 > div[style*="line-height"] { margin-top: 5px !important; line-height: 1.55 !important; font-size: 11.5px !important; }
+            .part-a-page-1 #table2-container { margin-top: 5px !important; }
+            .part-a-page-1 #table2-container > div { margin-bottom: 2px !important; }
+            .part-a-page-1 .guest-lecture-a-table th,
+            .part-a-page-1 .guest-lecture-a-table td { padding: 1px !important; font-size: 8.8px !important; line-height: 1.05 !important; }
+            .part-a-page-1 .guest-lecture-a-table th { height: 24px !important; }
+            .part-a-page-1 .guest-lecture-a-table textarea,
+            .part-a-page-1 .guest-lecture-a-table input { font-size: 9px !important; min-height: 15px !important; height: 17px !important; padding: 0 !important; }
+            .part-a-page-1 #table3-container { margin-top: 5px !important; }
+            .part-a-page-1 #table3-container .main-table th,
+            .part-a-page-1 #table3-container .main-table td { padding: 1px !important; font-size: 9px !important; line-height: 1.05 !important; }
+            .part-a-page-1 #table3-container textarea,
+            .part-a-page-1 #table3-container input { min-height: 16px !important; height: 17px !important; font-size: 9px !important; padding: 0 !important; }
+            .part-a-page1-signature { bottom: 3mm !important; right: 8mm !important; width: 72mm !important; }
+            .principal-print-box { background: transparent !important; border: none !important; width: 82mm !important; margin-left: auto !important; margin-right: 0 !important; }
+
+            /* Page 1: use the printable area better while preserving a clear signature zone. */
+            .part-a-page-1 { width: 210mm !important; height: 297mm !important; min-height: 297mm !important; padding: 11mm 11mm 3mm !important; box-sizing: border-box !important; zoom: 1; }
+            .part-a-page-1 h3 { font-size: 16px !important; margin-bottom: 9px !important; }
+            .part-a-page-1 .header-table td { padding: 2px 3px !important; font-size: 11px !important; }
+            .part-a-page-1 .header-table input { height: 22px !important; font-size: 11px !important; }
+            .part-a-page-1 > div[style*="line-height"] { margin-top: 8px !important; line-height: 1.7 !important; font-size: 12.5px !important; }
+            .part-a-page-1 #table2-container { margin-top: 8px !important; }
+            .part-a-page-1 #table2-container > div { margin-bottom: 4px !important; }
+            .part-a-page-1 .guest-lecture-a-table th,
+            .part-a-page-1 .guest-lecture-a-table td { padding: 2px !important; font-size: 9.8px !important; line-height: 1.12 !important; }
+            .part-a-page-1 .guest-lecture-a-table th { height: 27px !important; }
+            .part-a-page-1 .guest-lecture-a-table textarea,
+            .part-a-page-1 .guest-lecture-a-table input { font-size: 9.8px !important; min-height: 17px !important; height: 19px !important; padding: 1px !important; }
+            .part-a-page-1 #table3-container { margin-top: 8px !important; }
+            .part-a-page-1 #table3-container .main-table th,
+            .part-a-page-1 #table3-container .main-table td { padding: 2px !important; font-size: 9.8px !important; line-height: 1.12 !important; }
+            .part-a-page-1 #table3-container textarea,
+            .part-a-page-1 #table3-container input { min-height: 18px !important; height: 19px !important; font-size: 9.8px !important; padding: 1px !important; }
+        }
+
+        /* --- PRINCIPAL SIGNATURE AREA: clean, no outer box --- */
+        .principal-print-box {
+            width: 82mm; min-height: 24mm; border: none !important; border-radius: 0;
+            padding: 0; margin: 4px 0 0 auto; text-align: center; background: transparent !important;
+        }
+        .principal-print-box .principal-name {
+            width: 100%; min-height: 24px; font-size: 17px; line-height: 1.25; font-weight: 800;
+            border: none; border-bottom: 1px solid #777; background: transparent;
+            overflow-wrap: anywhere; white-space: normal; padding: 2px 0; text-align: center;
+        }
+        .principal-print-box .principal-mobile { font-size: 12px; font-weight: 700; margin-top: 5px; text-align: center; }
 
         /* --- PRINT SETTINGS --- */
         @media print {
             @page { size: A4; margin: 0; }
             body, html { margin: 0 !important; padding: 0 !important; background: white !important; height: 100%; width: 100%; }
-            #section-part-a, #part-b-section { margin: 0 !important; padding: 0 !important; border: none !important; }
+            #section-part-a { margin: 0 !important; padding: 0 !important; border: none !important; display: block !important; }
+            #part-b-section { margin: 0 !important; padding: 0 !important; border: none !important; }
             #part-b-section.hidden-section { display: none !important; }
+            #part-b-section:not(.hidden-section) { display: block !important; }
             .page { 
                 margin: 0 !important; border: none !important; box-shadow: none !important; outline: none !important; width: 100% !important;
                 height: 296mm !important; overflow: hidden; display: block; page-break-after: always !important; break-after: page !important;
@@ -97,6 +163,10 @@
         .att-input { text-transform: uppercase; font-family: Arial, sans-serif !important; font-weight: bold; letter-spacing: 1px; }
 
         .compact-table th, .compact-table td { padding: 1px 2px; font-size: 11px; height: 22px; }
+        .guest-lecture-a-table { table-layout: fixed; }
+        .guest-lecture-a-table th, .guest-lecture-a-table td { padding: 2px 1px; font-size: 10.5px; }
+        .guest-lecture-a-table textarea { min-height: 18px; font-size: 10.5px; line-height: 1.05; }
+        .guest-lecture-a-table input { font-size: 10.5px; }
         .compact-table textarea { min-height: 18px; font-size: 11px; }
         h3 { text-align: center; margin: 0 0 15px 0; text-decoration: underline; font-weight: 700; font-size: 16px; color: black; }
         
@@ -141,6 +211,47 @@
         .hidden-section { display: none; }
         .srinis-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 22px; text-transform: uppercase; background: linear-gradient(135deg, var(--btn-grad-1) 0%, var(--btn-grad-2) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .big-checkbox { transform: scale(1.5); cursor: pointer; }
+
+        /* --- FINAL PRINT BALANCE: Part-A Page 1 --- */
+        @media print {
+            .part-a-page-1 {
+                overflow: hidden !important;
+            }
+
+            /* Attendance section: slightly taller rows */
+            .part-a-page-1 .main-table tr td[style*="height: 22px"] {
+                height: 29px !important;
+            }
+
+            /* Guest lecture: use the free vertical space instead of leaving a large gap */
+            .part-a-page-1 .guest-lecture-a-table tbody td {
+                height: 27px !important;
+                padding: 3px 2px !important;
+            }
+            .part-a-page-1 .guest-lecture-a-table tbody textarea,
+            .part-a-page-1 .guest-lecture-a-table tbody input {
+                height: 24px !important;
+                min-height: 24px !important;
+                line-height: 1.1 !important;
+            }
+
+            /* Industrial visit: slightly taller rows */
+            .part-a-page-1 #table3-container tbody tr:not(:last-child) td {
+                height: 31px !important;
+                padding: 3px 2px !important;
+            }
+            .part-a-page-1 #table3-container tbody tr:not(:last-child) textarea,
+            .part-a-page-1 #table3-container tbody tr:not(:last-child) input {
+                height: 24px !important;
+                min-height: 24px !important;
+            }
+
+            /* Keep the principal signature on Page 1 with only a small bottom gap */
+            .part-a-page1-signature {
+                bottom: 3mm !important;
+            }
+        }
+
     </style>
     
     <script>
@@ -160,16 +271,108 @@
             else sec.classList.add('hidden-section');
         }
 
+        function setSyncedValue(sourceId, targetId) {
+            const source = document.getElementById(sourceId);
+            const target = document.getElementById(targetId);
+            if (source && target) target.value = source.value;
+        }
+
         function syncData() {
-            const glInputsA = document.querySelectorAll('#table2-container textarea');
-            const glInputsB = document.querySelectorAll('#table15-container .gl-text-sync');
-            glInputsA.forEach((el, idx) => { if(glInputsB[idx]) glInputsB[idx].value = el.value; });
-            const ivInputsA = document.querySelectorAll('#table3-container textarea');
-            const ivInputsB = document.querySelectorAll('#table16-container textarea');
-            ivInputsA.forEach((el, idx) => { 
-                if(ivInputsB[idx]) ivInputsB[idx].value = el.value; 
-                if(el.classList.contains('expense-input')) calcExpenseTotalB();
+            const aRows = document.querySelectorAll('#table2-container tbody tr');
+            const bRows = document.querySelectorAll('#table15-container tbody tr');
+            aRows.forEach((row, r) => {
+                const aCells = row.querySelectorAll('textarea');
+                const bCells = bRows[r] ? bRows[r].querySelectorAll('.gl-text-sync') : [];
+                [0,1,2,3].forEach(i => { if (aCells[i] && bCells[i]) bCells[i].value = aCells[i].value; });
             });
+
+            const ivInputsA = document.querySelectorAll('#table3-container tbody tr:not(:last-child) textarea');
+            const ivInputsB = document.querySelectorAll('#table16-container tbody tr:not(:last-child) textarea');
+            ivInputsA.forEach((el, idx) => { if (ivInputsB[idx]) ivInputsB[idx].value = el.value; });
+            calcExpenseTotalB();
+
+            setSyncedValue('schoolName', 'vcSchoolName');
+            setSyncedValue('schoolDistrict', 'vcDistrict');
+            setSyncedValue('schoolPhone', 'vcPrincipalMobile');
+            setSyncedValue('principalName', 'vcPrincipalName');
+            setSyncedValue('sectorName', 'vcSectorName');
+            setSyncedValue('vtpName', 'vcVtpName');
+
+            // Part-A → Part-B common fields
+            const sectorSource = document.getElementById('sectorName');
+            if (sectorSource) {
+                document.querySelectorAll('.sector-sync, .sector-name-sync').forEach(el => { el.value = sectorSource.value; });
+            }
+
+            const pn = document.getElementById('principalName');
+            const pa = document.getElementById('principalNameA');
+            const ps = document.getElementById('vcPrincipalSignature');
+            const pm = document.getElementById('principalMobileA');
+            if (pn) {
+                if (pa) pa.textContent = pn.value.trim() || 'प्रधानाचार्य';
+                if (ps) ps.textContent = pn.value.trim() || 'प्रधानाचार्य';
+                const ppn = document.getElementById('principalPrintName');
+                if (ppn) ppn.textContent = pn.value.trim() || 'प्रधानाचार्य';
+            }
+            const phone = document.getElementById('schoolPhone');
+            if (pm && phone) pm.textContent = phone.value.trim();
+            const ppm = document.getElementById('principalPrintMobile');
+            if (ppm && phone) ppm.textContent = phone.value.trim();
+            saveDraft();
+        }
+
+        function saveDraft() {
+            try {
+                const data = {};
+                document.querySelectorAll('input, textarea, select').forEach((el, i) => {
+                    const key = el.id || '__field_' + i;
+                    data[key] = el.type === 'checkbox' ? el.checked : el.value;
+                });
+                localStorage.setItem('srinisAttendanceDraft', JSON.stringify(data));
+            } catch (e) {}
+        }
+
+        function restoreDraft() {
+            try {
+                const raw = localStorage.getItem('srinisAttendanceDraft');
+                if (!raw) return;
+                const data = JSON.parse(raw);
+                document.querySelectorAll('input, textarea, select').forEach((el, i) => {
+                    const key = el.id || '__field_' + i;
+                    if (!(key in data)) return;
+                    if (el.type === 'checkbox') el.checked = !!data[key];
+                    else el.value = data[key];
+                });
+                document.querySelectorAll('textarea').forEach(autoResize);
+            } catch (e) {}
+        }
+
+        function clearDraft() {
+            if (confirm('क्या आप सेव किया हुआ ड्राफ्ट हटाना चाहते हैं?')) {
+                localStorage.removeItem('srinisAttendanceDraft');
+                location.reload();
+            }
+        }
+
+        function validateData(showMessage = true) {
+            let valid = true;
+            const phone = document.getElementById('schoolPhone');
+            if (phone && phone.value.trim() && !/^[0-9+()\-\s]{10,15}$/.test(phone.value.trim())) {
+                phone.classList.add('validation-error'); valid = false;
+            } else if (phone) phone.classList.remove('validation-error');
+
+            const email = document.getElementById('schoolEmail');
+            if (email && email.value.trim() && !/^\S+@\S+\.\S+$/.test(email.value.trim())) {
+                email.classList.add('validation-error'); valid = false;
+            } else if (email) email.classList.remove('validation-error');
+
+            document.querySelectorAll('input[type="number"]').forEach(el => {
+                if (el.value !== '' && Number(el.value) < 0) {
+                    el.classList.add('validation-error'); valid = false;
+                } else el.classList.remove('validation-error');
+            });
+            if (showMessage) alert(valid ? 'डेटा validation सफल है।' : 'कृपया लाल रंग वाले fields में सही data दर्ज करें।');
+            return valid;
         }
 
         function calculateSummaryA() {
@@ -231,6 +434,7 @@
 
         // --- NEW EMAIL FUNCTIONALITY ---
         function sendEmail() {
+            if (!validateData(true)) return;
             // 1. Get User Email
             let userEmail = prompt("अपना ईमेल पता दर्ज करें (Enter your Email ID):", "");
             if (!userEmail) return;
@@ -282,33 +486,120 @@
     </div>
     
     <button onclick="applyRandomTheme()" style="padding: 8px; background: #333; border: 1px solid #555; color: #fff; border-radius: 50%; cursor: pointer;">🎨</button>
-    <button onclick="window.print()" class="btn-print">🖨️ Print</button>
+    <button onclick="validateData(true)" style="padding: 6px 15px; font-weight:bold; color:white; border:none; border-radius:50px; cursor:pointer; background:#546e7a;">✓ Validate</button>
+    <button onclick="saveDraft(); alert('डाटा browser में save/update हो गया है।')" style="padding: 6px 15px; font-weight:bold; color:white; border:none; border-radius:50px; cursor:pointer; background:#607d8b;">💾 Save</button>
+    <button onclick="clearDraft()" style="padding: 6px 15px; font-weight:bold; color:white; border:none; border-radius:50px; cursor:pointer; background:#8e44ad;">🗑️ Clear</button>
+    <button onclick="syncData(); if (validateData(true)) window.print();" class="btn-print">🖨️ Print</button>
     <button onclick="sendEmail()" class="btn-email">📧 Email PDF</button>
 
 <br> <marquee direction="left" style="color:white; font-size:15px; font-weight:bold; background:black;" >हिंदी और अंग्रेजी में टाईपिंग के लिए Google Input Tools  के साथ कीबोर्ड पर Alt+Shift बटन एक साथ दबाएं या आप WindowsKey+Spacebar का भी इस्तेमाल कर सकते हैं।</marquee>
 </div>
 
 <div id="section-part-a">
-    <div class="page">
+    <div class="page part-a-page-1">
         <h3>व्यावसायिक प्रशिक्षक उपस्थिति प्रमाण पत्र-अ</h3>
-        <table class="header-table"><tr><td colspan="4"><span class="label">विद्यालय का नाम:-</span><input type="text" value="" style="width: 70%; text-align: left; font-weight: 700;"></td></tr>
+        <table class="header-table"><tr><td colspan="4"><span class="label">विद्यालय का नाम:-</span><input type="text" id="schoolName" value="" oninput="syncData()" style="width: 70%; text-align: left; font-weight: 700;"></td></tr>
         <tr>
-        <td style="width: 25%;"><span class="label">ब्लॉक:</span><input type="text" value="" style="width: 60%; text-align: left;"></td>
-        <td style="width: 25%;"><span class="label">जिला:</span><input type="text" value="" style="width: 60%; text-align: left;"></td>
-        <td colspan="2" style="width: 50%;"><span class="label">दूरभाष नम्बर:</span><input type="text" style="width: 65%; text-align: left;"></td></tr>
-        <tr><td colspan="4"><span class="label">मेल आईडी:</span><input type="text" style="width: 80%; text-align: left;"></td></tr></table>
-        <div style="text-align: justify; margin-top: 10px; line-height: 2.2; font-size: 14px; color: black; font-weight: 500;">प्रमाणित किया जाता है कि माह <input type="text" id="dispMonth" style="width: 80px; display: inline-block;" readonly> वर्ष <input type="text" id="dispYear" style="width: 50px; display: inline-block;" readonly> में व्यावसायिक शिक्षा के अन्तर्गत विद्यालय में संचालित सेक्टर <input type="text" style="width: 80px; text-align: left; display: inline-block;" value=""> में व्यावसायिक प्रशिक्षण प्रदाता <input type="text" style="width: 250px; text-align: left; display: inline-block; font-weight: 700;" value=""> द्वारा नियोजित व्यावसायिक प्रशिक्षक/गतिविधियों की बिन्दुवार सूचना निम्नानुसार है:-</div>
+        <td style="width: 25%;"><span class="label">ब्लॉक:</span><input type="text" id="schoolBlock" value="" style="width: 60%; text-align: left;"></td>
+        <td style="width: 25%;"><span class="label">जिला:</span><input type="text" id="schoolDistrict" value="" oninput="syncData()" style="width: 60%; text-align: left;"></td>
+        <td colspan="2" style="width: 50%;"><span class="label">दूरभाष नम्बर:</span><input type="text" id="schoolPhone" oninput="syncData()" style="width: 65%; text-align: left;"></td></tr>
+        <tr><td colspan="4"><span class="label">मेल आईडी:</span><input type="email" id="schoolEmail" style="width: 80%; text-align: left;"></td></tr>
+        <tr><td colspan="4"><span class="label">प्रधानाचार्य / संस्था प्रधान का नाम:</span><input type="text" id="principalName" oninput="syncData()" style="width: 68%; text-align: left; font-weight: 700;"></td></tr></table>
+        <div style="text-align: justify; margin-top: 10px; line-height: 2.2; font-size: 14px; color: black; font-weight: 500;">प्रमाणित किया जाता है कि माह <input type="text" id="dispMonth" style="width: 80px; display: inline-block;" readonly> वर्ष <input type="text" id="dispYear" style="width: 50px; display: inline-block;" readonly> में व्यावसायिक शिक्षा के अन्तर्गत विद्यालय में संचालित सेक्टर <input type="text" id="sectorName" oninput="syncData()" style="width: 80px; text-align: left; display: inline-block;" value=""> में व्यावसायिक प्रशिक्षण प्रदाता <input type="text" id="vtpName" oninput="syncData()" style="width: 250px; text-align: left; display: inline-block; font-weight: 700;" value=""> द्वारा नियोजित व्यावसायिक प्रशिक्षक/गतिविधियों की बिन्दुवार सूचना निम्नानुसार है:-</div>
         <div style="margin-top: 10px;"><div style="font-weight: 700; margin-bottom: 5px;">1. व्यावसायिक प्रशिक्षक (V.T.) की उपस्थिति निम्नानुसार है:-</div>
         <table class="main-table" style="margin-bottom: -1px;"><tr><script>for(let i=1; i<=16; i++) document.write(`<th>${i}</th>`)</script></tr><tr><script>for(let i=1; i<=16; i++) document.write(`<td style="height: 22px;"><input type="text" id="d${i}" class="att-input" onkeyup="handleInputA(this)"></td>`)</script></tr></table><table class="main-table"><tr><script>for(let i=17; i<=31; i++) document.write(`<th>${i}</th>`)</script></tr><tr><script>for(let i=17; i<=31; i++) document.write(`<td style="height: 22px;"><input type="text" id="d${i}" class="att-input" onkeyup="handleInputA(this)"></td>`)</script></tr></table></div>
 
         <div style="margin-top: 10px;" id="table2-container">
             <div style="font-weight: 700; margin-bottom: 5px;">2. माह में आयोजित गेस्ट लेक्चर का विवरण:-</div>
-            <table class="main-table"><thead><tr><th style="width: 30px;">क्र.</th><th style="width: 40px;">कक्षा</th><th style="width: 50px;">दिनांक</th><th style="width: 50px;">नामांकन</th><th style="width: 70px;">लाभान्वित विद्यार्थियों की संख्या (उपस्थित) </th><th>गेस्ट लेक्चर का विषय/Topic</th><th>विषय विशेषज्ञ नाम</th><th>विषय विशेषज्ञ का पद पदस्थापन व कार्यरत संस्थान</th></tr></thead><tbody>
-                <tr><td>1</td><td><input type="text" value="9" readonly></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td></tr>
-                <tr><td>2</td><td><input type="text" value="10" readonly></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td></tr>
-                <tr><td>3</td><td><input type="text" value="11" readonly></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td></tr>
-                <tr><td>4</td><td><input type="text" value="12" readonly></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td><td><textarea oninput="autoResize(this); syncData()"></textarea></td></tr>
-            </tbody></table>
+            <table class="main-table compact-table guest-lecture-a-table">
+                <thead>
+                    <tr>
+                        <th style="width: 28px;">क्र.सं.</th>
+                        <th style="width: 38px;">कक्षा</th>
+                        <th style="width: 45px;">लेक्चर संख्या</th>
+                        <th style="width: 55px;">दिनांक</th>
+                        <th style="width: 55px;">नामांकन</th>
+                        <th style="width: 72px;">लाभान्वित विद्यार्थियों की संख्या (उपस्थित)</th>
+                        <th>गेस्ट लेक्चर का विषय/Topic</th>
+                        <th>विषय विशेषज्ञ नाम</th>
+                        <th>विषय विशेषज्ञ का पद पदस्थापन व कार्यरत संस्थान</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td><td rowspan="2">9</td><td>1</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>2</td><td>2</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>3</td><td rowspan="2">10</td><td>3</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>4</td><td>4</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>5</td><td rowspan="2">11</td><td>5</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>6</td><td>6</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>7</td><td rowspan="2">12</td><td>7</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                    <tr>
+                        <td>8</td><td>8</td>
+                        <td><textarea class="gl-a-date auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-enroll auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-benefit auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-topic auto-sync" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-expert" oninput="autoResize(this); syncData()"></textarea></td>
+                        <td><textarea class="gl-a-designation" oninput="autoResize(this); syncData()"></textarea></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <div style="margin-top: 10px;" id="table3-container">
@@ -323,10 +614,9 @@
                 <tr><td colspan="4" style="text-align: right; font-weight: 700; padding-right: 10px;">कुल योग</td><td><input type="text" id="totalExpenseA" readonly></td><td></td></tr>
             </tbody></table>
         </div>
-        <div style="position: absolute; bottom: 3mm; right: 10mm; text-align: right;"><p style="font-weight: 700;">हस्ताक्षर</p>
-
-        <p style="font-size: 15px; font-weight: 700;">प्रधानाचार्य</p>
-        <p style="font-size: 11px;">(नाम संस्था प्रधान मय मोबाइल नं.)</p>
+        <div class="part-a-page1-signature">
+            <p style="font-weight: 700; margin: 0;">हस्ताक्षर प्रधानाचार्य</p>
+            <p style="font-size: 11px; margin: 10px 0 0;">(नाम संस्था प्रधान मय सील)</p>
         </div>
     </div>
 
@@ -341,10 +631,15 @@
 <tr><td style="width: 75%; font-weight: 600;">e) व्यावसायिक शिक्षा योजना के प्रभावी संचालन हेतु किया गया अतिरिक्त प्रयास -</td><td><textarea oninput="autoResize(this)" style="text-align: left;"></textarea></td></tr><tr><td style="width: 75%; font-weight: 600;">f) अन्य-</td><td><textarea oninput="autoResize(this)" style="text-align: left;"></textarea></td></tr></table><p style="margin-top: 15px; font-size: 14px; text-align: justify; line-height: 1.6; font-weight: 500;">व्यावसायिक प्रशिक्षण प्रदाता द्वारा नियोजित व्यावसायिक प्रशिक्षक के समस्त कार्य सन्तोषप्रद रहे है। अतः जिला कार्यालय द्वारा नियमानुसार भुगतान किये जाने की अनुशंसा की जाती है।</p></div>
         <div><h4 style="margin-top: 20px; border: 1px solid black; display: inline-block; padding: 5px; text-decoration: none; font-size: 15px;">V.T. Attendance Detail for current Month</h4><table class="main-table" style="margin-top: 5px;"><thead><tr><th style="width: 60px;">Total Working Days in School</th><th>Present</th><th>Absent</th><th>On leave<br>(Date)</th><th>Govt.Holiday<br>(Date)</th><th>Principal Power/Other Power Holiday (Date)</th><th>Balance of Leaves</th></tr></thead><tbody><tr style="height: 50px;"><td><input type="text" id="totalWorking" readonly style="font-weight: 700;"></td><td><input type="text" id="totalPresent" readonly style="color:green; font-weight: 700;"></td><td><input type="text" id="totalAbsent" readonly style="color:red; font-weight: 700;"></td><td><div class="split-cell"><input type="text" id="cntLeave" class="count-box" readonly placeholder="0"><textarea id="totalLeaveDates" readonly class="date-box" style="color:orange;" placeholder="Dates"></textarea></div></td><td><div class="split-cell"><input type="text" id="cntGovt" class="count-box" readonly placeholder="0"><textarea id="totalGovtDates" readonly class="date-box" style="color:blue;" placeholder="Dates"></textarea></div></td><td><div class="split-cell"><input type="text" id="cntPH" class="count-box" readonly placeholder="0"><textarea id="totalPrincipalDates" readonly class="date-box" style="color:purple;" placeholder="Dates"></textarea></div></td><td><input type="text" id="finalBalance" readonly style="font-weight: 900; font-size: 15px;"></td></tr></tbody></table></div>
         <div style="position: absolute; bottom: 8mm; left: 10mm; right: 10mm; display: flex; justify-content: space-between; align-items: flex-end;"><div style="writing-mode: vertical-rl; transform: rotate(180deg); font-size: 12px; font-weight: 700;">(नोट:-यह प्रारूप जुलाई, 2024 से लागू)</div>
-        <div style="text-align: center; width: 250px;"><p style="font-weight: 700;">हस्ताक्षर प्रधानाचार्य</p><br><br>
-        <td style="width: 50%;"><span class="label"></span>Name Of Principle :<input type="text" value="" style="width: 50%;"></td>
-        <br><td style="width: 50%;"><span class="label"></span>Mobile Number :<input type="text" value="" style="width: 50%;"></td>
-        <p style="font-weight: 700;">नाम संस्था प्रधान मय सील</p></div></div>
+        <div style="text-align: center; width: 82mm; margin-left: auto; margin-right: 0;">
+            <p style="font-weight: 700; margin: 0;">हस्ताक्षर प्रधानाचार्य</p><br>
+            <div class="principal-print-box">
+                <div style="font-size:10px; font-weight:700;">Name Of Principal / संस्था प्रधान</div>
+                <div id="principalPrintName" class="principal-name">प्रधानाचार्य</div>
+                <div class="principal-mobile">Mobile Number : <span id="principalPrintMobile"></span></div>
+            </div>
+            <p style="font-weight: 700; margin: 4px 0 0;">नाम संस्था प्रधान मय सील</p>
+        </div></div>
     </div>
 </div>
 
@@ -353,25 +648,25 @@
         <h3>स्किल नॉलेज फैसिलिटेटर / व्यावसायिक समन्वयक निरीक्षण प्रपत्र–ब</h3>
         <div style="margin-top: 25px;"> 
         <div class="spaced-row">
-        <span class="form-label">1. जिले का नाम:</span><div class="form-field"><input type="text" value="" class="inline-input" style="text-align: left;"></div>
+        <span class="form-label">1. जिले का नाम:</span><div class="form-field"><input type="text" id="vcDistrict" value="" class="inline-input" style="text-align: left;"></div>
         <span class="form-label">निरीक्षण दिनांक:</span><div class="form-field" style="max-width: 150px;"><input type="date" class="inline-input" ></div></div>
-            <div class="spaced-row"><span class="form-label">2. VTP का नाम:</span><div class="form-field"><input type="text" value="" class="inline-input" style="text-align: left;"></div></div>
+            <div class="spaced-row"><span class="form-label">2. VTP का नाम:</span><div class="form-field"><input type="text" id="vcVtpName" value="" class="inline-input" style="text-align: left;"></div></div>
             <div class="spaced-row"><span class="form-label">3. स्किल नॉलेज फैसिलिटेटर/व्यावसायिक समन्वयक का आवंटित जिला मुख्यालय:</span><div class="form-field"><input type="text" value="" class="inline-input" style="text-align: left;"></div></div>
-            <div class="spaced-row"><span class="form-label">4. विद्यालय का नाम:</span><div class="form-field"><input type="text" value="" class="inline-input" style="text-align: left;"></div></div>
-            <div class="spaced-row"><span class="form-label">5. संस्था प्रधान का नाम:</span><div class="form-field"><input type="text" class="inline-input" style="text-align: left;"></div><span class="form-label">मोबाईल:</span><div class="form-field" style="max-width: 150px;"><input type="text" class="inline-input" style="text-align: left;"></div></div>
+            <div class="spaced-row"><span class="form-label">4. विद्यालय का नाम:</span><div class="form-field"><input type="text" id="vcSchoolName" value="" class="inline-input" style="text-align: left;"></div></div>
+            <div class="spaced-row"><span class="form-label">5. संस्था प्रधान का नाम:</span><div class="form-field"><input type="text" id="vcPrincipalName" class="inline-input" style="text-align: left;"></div><span class="form-label">मोबाईल:</span><div class="form-field" style="max-width: 150px;"><input type="text" id="vcPrincipalMobile" class="inline-input" style="text-align: left;"></div></div>
             <div class="spaced-row"><span class="form-label">6. कौशल मित्र (व्यावसायिक शिक्षा) का नाम:</span><div class="form-field"><input type="text" class="inline-input" style="text-align: left;"></div><span class="form-label">मोबाईल:</span><div class="form-field" style="max-width: 150px;"><input type="text" class="inline-input" style="text-align: left;"></div></div>
             <div class="spaced-row"><span class="form-label">7. निरीक्षण दिवस को व्यावसायिक प्रशिक्षक की उपस्थिति:</span><div class="form-field"><input type="text" class="inline-input" style="text-align: left;"></div></div>
             <div class="spaced-row"><span class="form-label">8. स्किल नॉलेज फैसिलिटेटर/व्यावसायिक समन्वयक का नाम:</span><div class="form-field"><input type="text" class="inline-input" style="text-align: left;"></div><span class="form-label">मोबाईल:</span><div class="form-field" style="max-width: 150px;"><input type="text" class="inline-input" style="text-align: left;"></div></div>
-            <div class="spaced-row"><span class="form-label">9. विद्यालय में आवंटित/संचालित सेक्टर का नाम:</span><div class="form-field"><input type="text" value="" class="inline-input" style="text-align: left;"></div></div>
+            <div class="spaced-row"><span class="form-label">9. विद्यालय में आवंटित/संचालित सेक्टर का नाम:</span><div class="form-field"><input type="text" id="vcSectorName" value="" class="inline-input" style="text-align: left;"></div></div>
         </div>
         <div style="margin-top: 20px;"><div style="font-weight: 600; margin-bottom: 5px;">10. व्यावसायिक शिक्षा योजना के अन्तर्गत नामांकित विद्यार्थियों का विवरण ।</div>
         <table class="main-table std-table"><thead><tr><th rowspan="2" style="width: 15%;">ट्रेड/सेक्टर का नाम</th><th colspan="3">कक्षा 9</th><th colspan="3">कक्षा 10</th><th colspan="3">कक्षा 11</th><th colspan="3">कक्षा 12</th></tr><tr><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th></tr></thead>
-        <tbody><tr><td><input type="text" value=""></td><td><input type="number" id="t10_9m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_9f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_9t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_10m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_10f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_10t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_11m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_11f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_11t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_12m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_12f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_12t" readonly style="font-weight:bold; background:#eee;"></td></tr></tbody></table>
+        <tbody><tr><td><input type="text" class="sector-name-sync" value=""></td><td><input type="number" id="t10_9m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_9f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_9t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_10m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_10f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_10t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_11m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_11f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_11t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t10_12m" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_12f" oninput="calcStudentTotals()"></td><td><input type="number" id="t10_12t" readonly style="font-weight:bold; background:#eee;"></td></tr></tbody></table>
         </div>
         
         <div style="margin-top: 15px;"><div style="font-weight: 600; margin-bottom: 5px;">11. निरीक्षण दिवस में विद्यार्थियों की उपस्थिति ।</div><table class="main-table std-table"><thead><tr><th rowspan="2" style="width: 15%;">ट्रेड/सेक्टर का नाम</th><th colspan="3">कक्षा 9</th><th colspan="3">कक्षा 10</th><th colspan="3">कक्षा 11</th><th colspan="3">कक्षा 12</th></tr>
         <tr><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th><th>M</th><th>F</th><th>T</th></tr></thead>
-        <tbody><tr><td><input type="text" value=""></td><td><input type="number" id="t11_9m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_9f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_9t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_10m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_10f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_10t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_11m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_11f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_11t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_12m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_12f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_12t" readonly style="font-weight:bold; background:#eee;"></td></tr></tbody></table></div>
+        <tbody><tr><td><input type="text" class="sector-name-sync" value=""></td><td><input type="number" id="t11_9m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_9f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_9t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_10m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_10f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_10t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_11m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_11f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_11t" readonly style="font-weight:bold; background:#eee;"></td><td><input type="number" id="t11_12m" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_12f" oninput="calcStudentTotals()"></td><td><input type="number" id="t11_12t" readonly style="font-weight:bold; background:#eee;"></td></tr></tbody></table></div>
         <div style="margin-top: 20px; display: flex; flex-direction: column; gap: 15px;">
     
     <div style="display: flex; align-items: center; gap: 20px;">
@@ -396,8 +691,8 @@
 
 
         <div style="margin-top: 15px;"><div style="font-weight: 600; margin-top: 10px; margin-bottom: 5px;">14. सेक्टर वार प्रयोगशाला की स्थिति</div><table class="main-table">
-        <thead><tr><th style="width: 20%;">सेक्टर-1</th><th>पूर्ण रूप स्थापित</th><th>आंशिक रूप से स्थापित</th><th>स्थापित नहीं</th><th>सामग्री की उपलब्धता <br>प्राप्त/अप्राप्त</th></tr></thead><tbody><tr><td><input type="text" value=""></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td></tr></tbody></table></div>
-        <div style="margin-top: 15px;"><table class="main-table"><thead><tr><th style="width: 20%;">सेक्टर -2</th><th>पूर्ण रूप स्थापित</th><th>आंशिक रूप से स्थापित</th><th>स्थापित नहीं</th><th>सामग्री की उपलब्धता <br>प्राप्त/अप्राप्त</th></tr></thead><tbody><tr><td><input type="text" value=""></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td></tr></tbody></table></div>
+        <thead><tr><th style="width: 20%;">सेक्टर-1</th><th>पूर्ण रूप स्थापित</th><th>आंशिक रूप से स्थापित</th><th>स्थापित नहीं</th><th>सामग्री की उपलब्धता <br>प्राप्त/अप्राप्त</th></tr></thead><tbody><tr><td><input type="text" class="sector-sync" value=""></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td></tr></tbody></table></div>
+        <div style="margin-top: 15px;"><table class="main-table"><thead><tr><th style="width: 20%;">सेक्टर -2</th><th>पूर्ण रूप स्थापित</th><th>आंशिक रूप से स्थापित</th><th>स्थापित नहीं</th><th>सामग्री की उपलब्धता <br>प्राप्त/अप्राप्त</th></tr></thead><tbody><tr><td><input type="text" class="sector-sync" value=""></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td><td><input type="checkbox" class="big-checkbox"></td></tr></tbody></table></div>
         <div style="position: absolute; bottom: 15mm; left:10mm; right: 10mm; display: flex; justify-content: space-between; align-items: flex-end;"><div style="text-align: left; width: 250px;"><p style="font-weight: 700;">हस्ताक्षर</p><br><p style="font-size: 11px;">स्किल नॉलेज फैसिलिटेटर/व्यावसायिक समन्वयक</p></div><div style="text-align: right; width: 250px;"><p style="font-weight: 700;">हस्ताक्षर</p><br><p style="font-weight: 700;">प्रधानाचार्य</p></div></div>
     </div>
 
@@ -406,13 +701,13 @@
             <div style="font-weight: 600; margin-bottom: 2px;">15. निरीक्षण दिनांक तक आयोजित कराये गये गेस्ट लेक्चर का विवरण :-</div>
             <table class="main-table compact-table"><thead><tr><th width="30">क्र.सं.</th><th width="40">कक्षा</th><th width="40">लेक्चर संख्या</th><th width="60">दिनांक</th><th width="50">नामांकन</th><th>लाभान्वित विद्यार्थियों की संख्या (उपस्थित)</th><th>गेस्ट लेक्चर का विषय/Topic</th><th>गेस्ट लेक्चर का स्त्रोत</th></tr></thead><tbody>
                 <tr><td>1</td><td rowspan="2">9</td><td>1</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
-                <tr><td>2</td><td>2</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Online</option></select></td></tr>
+                <tr><td>2</td><td>2</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
                 <tr><td>3</td><td rowspan="2">10</td><td>3</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
-                <tr><td>4</td><td>4</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Online</option></select></td></tr>
+                <tr><td>4</td><td>4</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
                 <tr><td>5</td><td rowspan="2">11</td><td>5</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
-                <tr><td>6</td><td>6</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Online</option></select></td></tr>
+                <tr><td>6</td><td>6</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
                 <tr><td>7</td><td rowspan="2">12</td><td>7</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
-                <tr><td>8</td><td>8</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Online</option></select></td></tr>
+                <tr><td>8</td><td>8</td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><textarea class="gl-text-sync"></textarea></td><td><select><option>Online</option><option>Offline</option></select></td></tr>
             </tbody></table>
         </div>
 
@@ -446,7 +741,25 @@
 </div>
 
 <script>
-    function initForm() { updateCalendar(); }
+    function initForm() {
+        updateCalendar();
+        restoreDraft();
+        const wm = document.getElementById('wm-toggle');
+        if (wm) { wm.checked = true; document.body.classList.add('show-watermark'); }
+        const pb = document.getElementById('part-b-toggle');
+        if (pb) togglePartB();
+        syncData();
+        // Re-apply shared Part-A → Part-B fields after draft restore.
+        requestAnimationFrame(() => { syncData(); });
+        document.querySelectorAll('textarea').forEach(autoResize);
+    }
+
+    document.addEventListener('input', function(e) {
+        if (e.target.matches('input, textarea, select')) saveDraft();
+    });
+    document.addEventListener('change', function(e) {
+        if (e.target.matches('input, textarea, select')) { syncData(); validateData(false); }
+    });
 
     // --- NEW SMART PRINT FUNCTION ---
     function smartPrint() {
@@ -479,7 +792,7 @@
 
         } else {
             // अगर कंप्यूटर है तो नॉर्मल प्रिंट विंडो खोलें
-            window.print();
+            if (validateData(true)) window.print();
         }
     }
 </script>
