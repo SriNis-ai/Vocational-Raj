@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>SriNis AI - अतिथि व्याख्यान (गेस्ट लेक्चर) प्रतिवेदन</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES --- */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c2c2c;
+            --btn-grad-1: #3498db; --btn-grad-2: #2980b9;
+            --border-color: #3498db;
+            --input-bg: #e3f2fd;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            background: var(--secondary-color);
+            margin: 0; padding: 20px;
+            font-size: 13px; font-weight: 500;
+        }
+
+        /* --- PAGE CONTAINER --- */
+        .page {
+            width: 210mm; 
+            min-height: 297mm;
+            background: white;
+            margin: 0 auto 20px auto; padding: 10mm;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            position: relative;
+            border-top: 5px solid var(--border-color);
+        }
+
+        
+/* --- V13: MATCH ATTENDANCE NAVBAR / THEME --- */
+.site-navbar{position:sticky;top:0;z-index:9999;background:#1a1a1a;color:#fff;padding:8px;text-align:center;border-bottom:4px solid var(--border-color);display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;box-shadow:none}
+.srinis-logo-container{display:flex;align-items:center}
+.srinis-logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;background:linear-gradient(135deg,var(--btn-grad-1) 0%,var(--btn-grad-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-title{color:#fff;font-weight:700;font-size:13px;padding:4px 8px}
+.nav-btn{font-family:inherit;text-decoration:none;color:#fff;background:#333;border:1px solid #555;padding:6px 15px;border-radius:50px;font-weight:700;cursor:pointer;transition:.3s;display:flex;align-items:center;gap:5px}
+.nav-btn:hover{background:var(--primary-color);border-color:var(--primary-color);color:#fff}
+.nav-btn.primary{background:linear-gradient(45deg,var(--btn-grad-1),var(--btn-grad-2));border:none}
+.nav-date{font-size:12px;background:rgba(255,255,255,.1);padding:5px 10px;border-radius:30px;border:1px solid rgba(255,255,255,.2);color:#fff}
+.switch-container{display:flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#ccc}
+.switch{position:relative;display:inline-block;width:40px;height:20px}.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;inset:0;background:#555;transition:.4s;border-radius:34px}.slider:before{position:absolute;content:"";height:14px;width:14px;left:3px;bottom:3px;background:#fff;transition:.4s;border-radius:50%}
+.switch input:checked+.slider{background:var(--primary-color)}.switch input:checked+.slider:before{transform:translateX(20px)}
+.site-footer{width:min(210mm,calc(100% - 30px));margin:0 auto 18px;background:#1a1a1a;color:#ddd;border-top:4px solid var(--border-color);border-radius:0 0 8px 8px;padding:8px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;font-size:11px;box-shadow:none}
+.site-footer strong{color:#fff}.site-footer .footer-right{color:#aaa}
+@media(max-width:700px){body{padding:0!important}.site-navbar{justify-content:flex-start}.nav-title{display:none}.site-footer{width:100%;border-radius:0;margin-bottom:0}}
+@media print{.site-navbar,.site-footer{display:none!important}}
+
+/* --- ATTENDANCE-LIKE CONTROLS --- */
+.control-panel{position:sticky;top:0;z-index:999;background:#1a1a1a;color:#fff;padding:8px;text-align:center;border-bottom:4px solid var(--border-color);display:flex;justify-content:center;align-items:center;gap:15px;flex-wrap:wrap;margin-bottom:20px}
+.btn-print{padding:6px 20px;font-weight:bold;color:#fff;border:none;border-radius:50px;cursor:pointer;background:linear-gradient(45deg,var(--btn-grad-1),var(--btn-grad-2))}
+.btn-email{padding:6px 20px;font-weight:bold;color:#fff;border:none;border-radius:50px;cursor:pointer;background:linear-gradient(45deg,#1abc9c,#16a085);display:flex;align-items:center;gap:5px}
+.btn-email:hover{transform:scale(1.05)}
+.btn-home{font-family:inherit;text-decoration:none;color:#fff;background:#333;border:1px solid #555;padding:6px 15px;border-radius:50px;font-weight:bold;transition:.3s;display:flex;align-items:center;gap:5px}
+.btn-home:hover{background:var(--primary-color);border-color:var(--primary-color);color:#fff}
+.srinis-logo-text{font-family:'Montserrat',sans-serif;font-weight:900;font-size:22px;text-transform:uppercase;background:linear-gradient(135deg,var(--btn-grad-1) 0%,var(--btn-grad-2) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+
+/* --- CONTROL PANEL --- */
+        .control-panel {
+            position: sticky; top: 0; z-index: 999; background: #1a1a1a; padding: 10px; 
+            text-align: center; border-bottom: 4px solid var(--border-color);
+            display: flex; justify-content: center; gap: 15px; margin-bottom: 20px;
+        }
+        .btn-print { 
+            padding: 8px 25px; font-weight: bold; color: white; border: none; 
+            border-radius: 5px; cursor: pointer; background: #2ecc71; font-size: 15px;
+        }
+
+        /* --- FORM ELEMENTS --- */
+        input[type="text"], input[type="date"], input[type="number"], input[type="email"] {
+            font-family: inherit; width: 100%; border: 1px solid #ccc; 
+            background: var(--input-bg); padding: 5px; font-size: 13px; outline: none;
+        }
+        textarea {
+            font-family: inherit; width: 100%; border: 1px solid #ccc; 
+            background: var(--input-bg); padding: 5px; font-size: 13px; 
+            resize: none; outline: none; min-height: 50px;
+        }
+        
+        h2, h3, h4 { text-align: center; margin: 5px 0; color: #000; }
+        .section-title { font-weight:700;font-size:14px;margin-top:12px;margin-bottom:5px;background:linear-gradient(45deg,var(--btn-grad-1),var(--btn-grad-2));color:#fff;padding:5px 7px;border:1px solid var(--border-color);border-radius:2px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 10px; }
+        th, td { border: 1px solid #000; padding: 8px; vertical-align: top; }
+        th { background: #f5f5f5; font-weight: 600; text-align: left; }
+        .center-text { text-align: center; }
+
+        .signature-section { display: flex; justify-content: space-between; margin-top: 50px; text-align: center; }
+        .sig-block { width: 22%; border-top: 1px dotted #000; padding-top: 5px; font-weight: 600; font-size: 12px; }
+
+        .page-footer { text-align: right; font-size: 11px; margin-top: 20px; font-weight: 600; }
+
+        
+/* --- V11 SPACE / USABILITY IMPROVEMENTS --- */
+.page table{margin-bottom:6px}
+.page th,.page td{padding:4px 5px}
+.page input{height:22px}
+.page textarea{min-height:42px;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}
+.school-name-box{
+  min-height:42px!important;
+  height:42px!important;
+  white-space:pre-wrap!important;
+  overflow-wrap:anywhere!important;
+  word-break:break-word!important;
+}
+.page1 .basic-table td,.page1 .guest-table td{height:27px}
+.page1 .content-table tr:nth-child(1) td{height:46px}
+.page1 .content-table tr:nth-child(2) td{height:70px}
+.page1 .content-table tr:nth-child(3) td{height:70px}
+.page1 .content-table tr:nth-child(4) td{height:55px}
+.page1 .feedback-table textarea{min-height:82px!important;height:82px!important}
+.page2 .evaluation-table th,.page2 .evaluation-table td{height:31px}
+.page2 .guest-feedback-table textarea{min-height:62px!important;height:62px!important}
+.page2 .teacher-table th,.page2 .teacher-table td{height:30px}
+.signature-boxes{
+  display:grid!important;
+  grid-template-columns:1fr 1fr!important;
+  grid-template-rows:82px 82px!important;
+  gap:14px 24px!important;
+  margin-top:12px!important;
+}
+.signature-box{
+  border:1.4px solid #5f9ed0!important;
+  border-radius:3px!important;
+  min-height:82px!important;
+  display:flex!important;
+  align-items:flex-end!important;
+  justify-content:center!important;
+  text-align:center!important;
+  padding:8px!important;
+  position:relative!important;
+  background:#fff!important;
+}
+.signature-box .sig-line{
+  width:80%;
+  border-top:1px dotted #333;
+  padding-top:4px;
+  font-size:9px;
+  font-weight:600;
+}
+@media screen and (min-width:900px){
+  .page{padding:5mm}
+}
+@media print{
+  .page{padding:5mm!important}
+  .school-name-box{height:42px!important;min-height:42px!important}
+  .signature-boxes{
+    grid-template-rows:82px 82px!important;
+    gap:12px 22px!important;
+  }
+  .signature-box{min-height:82px!important;height:82px!important}
+}
+
+
+.show-watermark .page::before{display:block!important}
+.page::before{content:'SriNis AI';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-30deg);font-family:'Montserrat',sans-serif;font-weight:900;font-size:130px;text-transform:uppercase;white-space:nowrap;background:linear-gradient(135deg,var(--btn-grad-1),var(--btn-grad-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;opacity:.055;pointer-events:none;z-index:0;display:none}
+
+/* --- PRINT SETTINGS --- */
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: white !important; margin: 0 !important; padding: 0 !important; }
+            .control-panel { display: none !important; }
+            .page { 
+                margin: 0 !important; border: none !important; box-shadow: none !important; 
+                width: 100% !important; height: 297mm !important; padding: 6mm !important; 
+                page-break-after: always;
+                break-after: page;
+            }
+            input, textarea { border: none !important; background: transparent !important; resize: none !important; padding: 0 !important; }
+            .section-title { border:1px solid var(--border-color)!important;background:linear-gradient(45deg,var(--btn-grad-1),var(--btn-grad-2))!important;color:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact; }
+            th { background: #eee !important; -webkit-print-color-adjust: exact; }
+        }
+    
+.input-note{font-size:8px;color:#666;text-align:right;margin:-2px 0 4px}
+@media print{.input-note{display:none!important}}
+
+</style>
+    <script>
+        function applyRandomTheme(){
+            const themes=[
+                {c:'#ff9933',g1:'#ff9933',g2:'#ff7722',bg:'#fff3e0'},
+                {c:'#3498db',g1:'#3498db',g2:'#2980b9',bg:'#e3f2fd'},
+                {c:'#2ecc71',g1:'#2ecc71',g2:'#27ae60',bg:'#e8f5e9'},
+                {c:'#ff4757',g1:'#ff4757',g2:'#ff6b81',bg:'#ffebee'},
+                {c:'#9b59b6',g1:'#9b59b6',g2:'#8e44ad',bg:'#f3e5f5'},
+                {c:'#00d2d3',g1:'#00d2d3',g2:'#01a3a4',bg:'#e0f7fa'}
+            ];
+            const t=themes[Math.floor(Math.random()*themes.length)],r=document.documentElement.style;
+            r.setProperty('--primary-color',t.c);r.setProperty('--border-color',t.c);r.setProperty('--btn-grad-1',t.g1);r.setProperty('--btn-grad-2',t.g2);r.setProperty('--input-bg',t.bg);
+        }
+        function toggleWatermark(){document.body.classList.toggle('show-watermark',document.getElementById('wm-toggle').checked)}
+        function autoResize(textarea) {
+            textarea.style.height = 'auto';
+            textarea.style.height = textarea.scrollHeight + 'px';
+        }
+    </script>
+</head>
+<body onload="applyRandomTheme()">
+
+<header class="site-navbar no-print">
+    <div class="srinis-logo-container"><span class="srinis-logo-text">SriNis AI</span></div>
+    <a href="#" class="btn-home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">🏠 Home</a>
+    <div class="nav-title">व्यावसायिक शिक्षा योजना • गेस्ट लेक्चर रिपोर्ट</div>
+    <div class="switch-container"><span>WaterMark</span><label class="switch"><input type="checkbox" id="wm-toggle" onchange="toggleWatermark()"><span class="slider"></span></label></div>
+    <button type="button" class="nav-btn" onclick="applyRandomTheme()">🎨</button>
+    <div class="nav-date" id="navDate">आज की तिथि</div>
+    <button type="button" class="nav-btn primary" onclick="window.print()">🖨️ Print</button>
+    <button type="button" class="nav-btn" onclick="clearReport()">🗑️ Clear</button>
+</header>
+<div class="input-note no-print">Hindi typing: Chrome में Google Input Tools enabled होने पर सीधे Hindi लिखें; अन्यथा normal English typing रहेगी.</div>
+
+<!-- PAGE 1 -->
+<div class="page page1">
+    <h2>व्यावसायिक शिक्षा योजना गेस्ट लेक्चर</h2>
+    <h3>अतिथि व्याख्यान (गेस्ट लेक्चर) प्रतिवेदन</h3>
+    <p style="text-align: center; font-weight: 600; font-size: 12px;">प्रत्येक गेस्ट लेक्चर सत्र के पश्चात व्यावसायिक प्रशिक्षक (VT) / व्यावसायिक समन्वयक (VC) द्वारा तैयार किया जाए</p>
+
+    <div class="section-title">1. मूल सत्र विवरण</div>
+    <table class="basic-table">
+        <tr>
+            <th style="width: 25%;">विद्यालय का नाम</th>
+            <td style="width: 25%;"><textarea class="school-name-box" placeholder="विद्यालय का पूरा नाम"></textarea></td>
+            <th style="width: 25%;">उपस्थित विद्यार्थियों की संख्या</th>
+            <td style="width: 25%;"><input type="number"></td>
+        </tr>
+        <tr>
+            <th>व्याख्यान की तिथि</th>
+            <td><input type="date"></td>
+            <th>व्याख्यान की अवधी</th>
+            <td><input type="text" placeholder="उदा. 2 घंटे"></td>
+        </tr>
+        <tr>
+            <th>ट्रेड / सेक्टर</th>
+            <td><input type="text"></td>
+            <th>कक्षा/कक्षाएँ</th>
+            <td><input type="text"></td>
+        </tr>
+    </table>
+
+    <div class="section-title">2. अतिथि व्याख्याता / रिसोर्स पर्सन का विवरण</div>
+    <table class="guest-table">
+        <tr>
+            <th style="width: 20%;">नाम</th>
+            <td style="width: 30%;"><input type="text"></td>
+            <th style="width: 20%;">पदनाम एवं संस्था / उद्योग का नाम</th>
+            <td style="width: 30%;"><input type="text"></td>
+        </tr>
+        <tr>
+            <th>विशेषज्ञता</th>
+            <td><input type="text"></td>
+            <th>मोबाइल नंबर</th>
+            <td><input type="text"></td>
+        </tr>
+        <tr>
+            <th>ईमेल आईडी</th>
+            <td colspan="3"><input type="email"></td>
+        </tr>
+    </table>
+
+    <div class="section-title">3. सत्र की विषयवस्तु</div>
+    <table class="content-table">
+        <tr>
+            <th style="width: 30%;">व्याख्यान का प्रमुख विषय</th>
+            <td><textarea oninput="autoResize(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>प्रस्तुत सामग्री का सारांश (संक्षिप्त विवरण)</th>
+            <td><textarea oninput="autoResize(this)" style="min-height: 80px;"></textarea></td>
+        </tr>
+        <tr>
+            <th>विद्यार्थियों के लिए मुख्य सीख (3-5 बिंदु)</th>
+            <td><textarea oninput="autoResize(this)" style="min-height: 80px;"></textarea></td>
+        </tr>
+        <tr>
+            <th>विद्यार्थियों द्वारा पूछे गए प्रश्न</th>
+            <td><textarea oninput="autoResize(this)" style="min-height: 60px;"></textarea></td>
+        </tr>
+    </table>
+
+    <div class="section-title">4. विद्यार्थियों की प्रतिक्रिया एवं फीडबैक</div>
+    <table class="feedback-table">
+        <tr>
+            <th colspan="5">सत्र पर विद्यार्थियों की समग्र प्रतिक्रिया / फीडबैक (उनके अपने शब्दों में / VT का सारांश):</th>
+        </tr>
+        <tr>
+            <td colspan="5"><textarea oninput="autoResize(this)" style="min-height: 80px;"></textarea></td>
+        </tr>
+    </table>
+    
+    <div class="page-footer">पृष्ठ 1 में से 2</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page page2">
+    <div style="font-weight: 600; margin-bottom: 5px;">सत्र का विद्यार्थियों द्वारा मूल्यांकन</div>
+    <table class="evaluation-table">
+        <tr>
+            <th>मापदंड</th>
+            <th class="center-text">औसत से कम</th>
+            <th class="center-text">औसत</th>
+            <th class="center-text">अच्छा</th>
+            <th class="center-text">बहुत अच्छा</th>
+            <th class="center-text">उत्कृष्ट</th>
+        </tr>
+        <tr>
+            <td>करियर / ट्रेड से विषय की प्रासंगिकता</td>
+            <td class="center-text"><input type="radio" name="r1"></td>
+            <td class="center-text"><input type="radio" name="r1"></td>
+            <td class="center-text"><input type="radio" name="r1"></td>
+            <td class="center-text"><input type="radio" name="r1"></td>
+            <td class="center-text"><input type="radio" name="r1"></td>
+        </tr>
+        <tr>
+            <td>समझ में मिली स्पष्टता</td>
+            <td class="center-text"><input type="radio" name="r2"></td>
+            <td class="center-text"><input type="radio" name="r2"></td>
+            <td class="center-text"><input type="radio" name="r2"></td>
+            <td class="center-text"><input type="radio" name="r2"></td>
+            <td class="center-text"><input type="radio" name="r2"></td>
+        </tr>
+        <tr>
+            <td>सत्र की सहभागिता / इंटरैक्टिविटी</td>
+            <td class="center-text"><input type="radio" name="r3"></td>
+            <td class="center-text"><input type="radio" name="r3"></td>
+            <td class="center-text"><input type="radio" name="r3"></td>
+            <td class="center-text"><input type="radio" name="r3"></td>
+            <td class="center-text"><input type="radio" name="r3"></td>
+        </tr>
+        <tr>
+            <td>रोजगारपरकता / उद्यमिता कौशल हेतु उपयोगिता</td>
+            <td class="center-text"><input type="radio" name="r4"></td>
+            <td class="center-text"><input type="radio" name="r4"></td>
+            <td class="center-text"><input type="radio" name="r4"></td>
+            <td class="center-text"><input type="radio" name="r4"></td>
+            <td class="center-text"><input type="radio" name="r4"></td>
+        </tr>
+    </table>
+
+    <div class="section-title">5. अतिथि व्याख्याता का फीडबैक</div>
+    <table class="guest-feedback-table">
+        <tr>
+            <th style="width: 40%;">विद्यार्थियों की सहभागिता एवं प्रतिक्रियाशीलता पर फीडबैक</th>
+            <td><textarea oninput="autoResize(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>विद्यालय / कार्यक्रम के बारे में सामान्य फीडबैक</th>
+            <td><textarea oninput="autoResize(this)"></textarea></td>
+        </tr>
+        <tr>
+            <th>सुधार हेतु सुझाव (यदि कोई हो)</th>
+            <td><textarea oninput="autoResize(this)"></textarea></td>
+        </tr>
+    </table>
+
+    <div class="section-title">6. शिक्षक / VT का अवलोकन एवं रेटिंग</div>
+    <div style="font-weight: 500; margin-bottom: 5px;">निम्नलिखित मापदंडों पर गेस्ट लेक्चर के संबंध में शिक्षक / VT की टिप्पणी:</div>
+    <table class="teacher-table">
+        <tr>
+            <th>मापदंड</th>
+            <th class="center-text">अच्छा</th>
+            <th class="center-text">बहुत अच्छा</th>
+            <th class="center-text">उत्कृष्ट</th>
+        </tr>
+        <tr>
+            <td>शिक्षण पद्धति</td>
+            <td class="center-text"><input type="radio" name="vt1"></td>
+            <td class="center-text"><input type="radio" name="vt1"></td>
+            <td class="center-text"><input type="radio" name="vt1"></td>
+        </tr>
+        <tr>
+            <td>योजना अनुसार विषय पूर्ण किए गए</td>
+            <td class="center-text"><input type="radio" name="vt2"></td>
+            <td class="center-text"><input type="radio" name="vt2"></td>
+            <td class="center-text"><input type="radio" name="vt2"></td>
+        </tr>
+        <tr>
+            <td>जानकारी की गहराई</td>
+            <td class="center-text"><input type="radio" name="vt3"></td>
+            <td class="center-text"><input type="radio" name="vt3"></td>
+            <td class="center-text"><input type="radio" name="vt3"></td>
+        </tr>
+        <tr>
+            <td>सत्र के बारे में समग्र फीडबैक</td>
+            <td class="center-text"><input type="radio" name="vt4"></td>
+            <td class="center-text"><input type="radio" name="vt4"></td>
+            <td class="center-text"><input type="radio" name="vt4"></td>
+        </tr>
+    </table>
+
+    <div class="section-title">7. सत्यापन एवं हस्ताक्षर</div>
+    <div class="signature-boxes">
+        <div class="signature-box"><div class="sig-line">अतिथि व्याख्याता के हस्ताक्षर</div></div>
+        <div class="signature-box"><div class="sig-line">व्यावसायिक प्रशिक्षक (VT) /<br>व्यावसायिक समन्वयक (VC) के हस्ताक्षर</div></div>
+        <div class="signature-box"><div class="sig-line">सत्यापनकर्ता (VERIFIED BY)<br>कौशल मित्र के हस्ताक्षर (तिथि सहित)</div></div>
+        <div class="signature-box"><div class="sig-line">प्रधानाचार्य के हस्ताक्षर<br>(विद्यालय मुहर सहित)</div></div>
+    </div>
+
+    <div class="page-footer">पृष्ठ 2 में से 2</div>
+</div>
+
+<footer class="site-footer no-print">
+  <div><strong>SriNis AI</strong> • अतिथि व्याख्यान (गेस्ट लेक्चर) प्रतिवेदन</div>
+  <div class="footer-right">Guest Lecture Report • A4 • 2 Pages</div>
+</footer>
+
+
+<script>
+(function(){
+  const d=document.getElementById('navDate');
+  if(d){
+    d.textContent='आज: '+new Intl.DateTimeFormat('hi-IN',{day:'2-digit',month:'short',year:'numeric'}).format(new Date());
+  }
+})();
+function clearReport(){
+  if(!confirm('क्या आप इस रिपोर्ट में भरा हुआ पूरा डाटा साफ करना चाहते हैं?')) return;
+  document.querySelectorAll('input:not([type="radio"]):not([type="checkbox"]), textarea, select').forEach(el=>{
+    if(el.type==='date') el.value='';
+    else if(el.tagName==='SELECT') el.selectedIndex=0;
+    else el.value='';
+  });
+  document.querySelectorAll('input[type="radio"],input[type="checkbox"]').forEach(el=>el.checked=false);
+  document.querySelectorAll('textarea').forEach(el=>{el.style.height='';});
+}
+</script>
+<script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("navDate");if(e)e.textContent="आज की तिथि: "+new Intl.DateTimeFormat("hi-IN",{day:"2-digit",month:"2-digit",year:"numeric"}).format(new Date())});</script>
+</body>
+</html>
