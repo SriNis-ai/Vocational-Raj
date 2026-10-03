@@ -182,6 +182,160 @@
 .input-note{font-size:8px;color:#666;text-align:right;margin:-2px 0 4px}
 @media print{.input-note{display:none!important}}
 
+
+/* =========================================================
+   V15 - FINAL STABLE A4 PRINT ENGINE
+   Keeps screen UI unchanged and makes online/local printing
+   use one consistent set of A4 rules.
+   ========================================================= */
+@media print {
+    @page {
+        size: A4 portrait;
+        margin: 0;
+    }
+
+    html, body {
+        width: 100% !important;
+        min-width: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        background: #fff !important;
+    }
+
+    body {
+        font-size: 13px !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .site-navbar,
+    .site-footer,
+    .input-note,
+    .control-panel,
+    .no-print {
+        display: none !important;
+    }
+
+    .page {
+        box-sizing: border-box !important;
+        width: 210mm !important;
+        min-width: 210mm !important;
+        max-width: 210mm !important;
+        height: 297mm !important;
+        min-height: 297mm !important;
+        max-height: 297mm !important;
+
+        margin: 0 !important;
+        padding: 5mm !important;
+
+        border: none !important;
+        border-top: none !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+
+        overflow: hidden !important;
+        position: relative !important;
+
+        page-break-before: auto !important;
+        page-break-after: always !important;
+        break-before: auto !important;
+        break-after: page !important;
+    }
+
+    .page:last-of-type {
+        page-break-after: auto !important;
+        break-after: auto !important;
+    }
+
+    /* Print inputs exactly as form content, without browser boxes. */
+    input,
+    textarea,
+    select {
+        box-sizing: border-box !important;
+        border: none !important;
+        outline: none !important;
+        background: transparent !important;
+        resize: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        font-family: inherit !important;
+        color: #000 !important;
+    }
+
+    /* Preserve the designed writing areas. */
+    .school-name-box {
+        height: 42px !important;
+        min-height: 42px !important;
+        max-height: 42px !important;
+        overflow: hidden !important;
+    }
+
+    .page1 .content-table tr:nth-child(1) td { height: 46px !important; }
+    .page1 .content-table tr:nth-child(2) td { height: 70px !important; }
+    .page1 .content-table tr:nth-child(3) td { height: 70px !important; }
+    .page1 .content-table tr:nth-child(4) td { height: 55px !important; }
+
+    .page1 .feedback-table textarea {
+        height: 82px !important;
+        min-height: 82px !important;
+        max-height: 82px !important;
+        overflow: hidden !important;
+    }
+
+    .page2 .guest-feedback-table textarea {
+        height: 62px !important;
+        min-height: 62px !important;
+        max-height: 62px !important;
+        overflow: hidden !important;
+    }
+
+    .page2 .evaluation-table th,
+    .page2 .evaluation-table td {
+        height: 31px !important;
+    }
+
+    .page2 .teacher-table th,
+    .page2 .teacher-table td {
+        height: 30px !important;
+    }
+
+    .signature-boxes {
+        grid-template-columns: 1fr 1fr !important;
+        grid-template-rows: 82px 82px !important;
+        gap: 12px 22px !important;
+        margin-top: 12px !important;
+    }
+
+    .signature-box {
+        height: 82px !important;
+        min-height: 82px !important;
+        max-height: 82px !important;
+        overflow: hidden !important;
+    }
+
+    .section-title {
+        border: 1px solid var(--border-color) !important;
+        background: linear-gradient(
+            45deg,
+            var(--btn-grad-1),
+            var(--btn-grad-2)
+        ) !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    th {
+        background: #eee !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+
+    .page-footer {
+        margin-top: 8px !important;
+    }
+}
+
 </style>
     <script>
         function applyRandomTheme(){
@@ -207,7 +361,7 @@
 
 <header class="site-navbar no-print">
     <div class="srinis-logo-container"><span class="srinis-logo-text">SriNis AI</span></div>
-    <a href="index.html" class="btn-home" onclick="window.scrollTo({top:0,behavior:'smooth'});return true;">🏠 Home</a>
+    <a href="#" class="btn-home" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">🏠 Home</a>
     <div class="nav-title">व्यावसायिक शिक्षा योजना • गेस्ट लेक्चर रिपोर्ट</div>
     <div class="switch-container"><span>WaterMark</span><label class="switch"><input type="checkbox" id="wm-toggle" onchange="toggleWatermark()"><span class="slider"></span></label></div>
     <button type="button" class="nav-btn" onclick="applyRandomTheme()">🎨</button>
